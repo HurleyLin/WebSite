@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 
 namespace ControlsORama
 {
-    public partial class Default : System.Web.UI.Page
+    public partial class UseCustomControl : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -16,12 +16,7 @@ namespace ControlsORama
 
         protected void Button1_Click(object sender, EventArgs e)
         {
-            Response.Write("Hello .Here's what you type into the text box: <br/>");
-            Response.Write(this.TextBox1.Text);
-
-            Response.Write("<br/>");
-            Response.Write("And the select item is:<br/>");
-            Response.Write(this.DropDownList1.SelectedItem.Text);
+            this.ServerControl11.Text = this.TextBox1.Text;
         }
     }
 }

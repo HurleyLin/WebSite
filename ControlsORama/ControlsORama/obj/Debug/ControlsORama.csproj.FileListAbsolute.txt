@@ -1,0 +1,6 @@
+E:\VS2010C#\website\ControlsORama\ControlsORama\bin\ControlsORama.dll
+E:\VS2010C#\website\ControlsORama\ControlsORama\bin\ControlsORama.pdb
+E:\VS2010C#\website\ControlsORama\ControlsORama\obj\Debug\ControlsORama.dll
+E:\VS2010C#\website\ControlsORama\ControlsORama\obj\Debug\ControlsORama.pdb
+E:\VS2010C#\website\ControlsORama\ControlsORama\bin\CustomControLib.pdb
+E:\VS2010C#\website\ControlsORama\ControlsORama\obj\Debug\ControlsORama.csprojResolveAssemblyReference.cache
