@@ -6,6 +6,7 @@ using System.Text;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Collections;
 
 namespace CustomControLib
 {
@@ -14,6 +15,7 @@ namespace CustomControLib
     public class PlindromeCheckerRenderedControl : WebControl
     {
         public event EventHandler PalindromeFound;
+        ArrayList alpaindrome = new ArrayList();
 
         [Bindable(true)]
         [Category("Appearance")]
@@ -30,13 +32,23 @@ namespace CustomControLib
             set
             {
                 ViewState["Text"] = value;
+
+                string text = value;
+                this.alpaindrome = (ArrayList)this.ViewState["palindrome"];
+                if (this.alpaindrome == null)
+                {
+                    this.alpaindrome = new ArrayList();
+                }
                 if (this.CheckForPalindrome())
                 {
                     if (this.PalindromeFound != null)
                     {
                         PalindromeFound(this,EventArgs.Empty);
                     }
+
+                    alpaindrome.Add(text);
                 }
+                ViewState.Add("palindrome", alpaindrome);
                 
             }
         }
@@ -88,6 +100,9 @@ namespace CustomControLib
                 output.RenderEndTag();
                 output.RenderEndTag();
             }
+
+            output.Write("<br>");
+            RenderPalindromesinTable(output);
         }
         protected bool CheckForPalindrome()
         {
@@ -140,6 +155,27 @@ namespace CustomControLib
             }
 
             return strStripped;
+        }
+
+        protected void RenderPalindromesinTable(HtmlTextWriter output)
+        {
+            output.AddAttribute(HtmlTextWriterAttribute.Width,"50%");
+            output.AddAttribute(HtmlTextWriterAttribute.Border,"1");
+            output.RenderBeginTag(HtmlTextWriterTag.Table);
+
+            foreach (string s in this.alpaindrome)
+            {
+                output.RenderBeginTag(HtmlTextWriterTag.Tr);
+                output.AddAttribute(HtmlTextWriterAttribute.Align,"left");
+                output.AddStyleAttribute(HtmlTextWriterStyle.FontSize,"medium");
+                output.AddStyleAttribute(HtmlTextWriterStyle.Color,"blue");
+                output.RenderBeginTag(HtmlTextWriterTag.Td);
+                output.Write(s);
+                output.RenderEndTag();
+                output.RenderEndTag();
+            }
+            output.RenderEndTag();
+        
         }
     }
 }
